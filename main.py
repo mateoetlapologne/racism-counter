@@ -9,12 +9,12 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="/", intents=intents)
 
 # Liste des mots à suivre
-tracked_words = ["negro", "nigger", "nigga", "sal juif", "bougnoule", "sal noir", "sal arabe", "nigga"]  # Remplacez par vos mots
+tracked_words = ["negro", "nigger", "nigga", "sale juif", "bougnoule", "sale noir", "sal arabe", "nigga", "négro"]  # Remplacez par vos mots
 word_count = {word: 0 for word in tracked_words}  # Compteur pour chaque mot
 user_count = {}  # Compteur des utilisateurs
 
 # ID du salon où afficher l'embed (remplacez par l'ID réel)
-TRACKER_CHANNEL_ID = 1312783161981276211
+TRACKER_CHANNEL_ID = 1211757745871790182
 
 
 @bot.event
@@ -29,7 +29,6 @@ async def on_ready():
 
     embed = discord.Embed(
         title="Qui est le plus raciste ?",
-        description="les mecs les plus raciste",
         color=discord.Color.blue()
     )
     embed.add_field(name="Les plus gros racelards", value="Aucune activité détectée.", inline=False)
@@ -64,14 +63,13 @@ async def on_message(message):
     if updated_words or updated_users:
         # Mettre à jour l'embed
         embed = discord.Embed(
-            title="Suivi des mots",
-            description="Voici le suivi des mots et des utilisateurs qui les utilisent.",
+            title="Racisme Tracker",
             color=discord.Color.blue()
         )
 
         # Ajoute les données de suivi des mots
         words_summary = "\n".join([f"{word} : {count} occurrence(s)" for word, count in word_count.items()])
-        embed.add_field(name="Mots suivis", value=words_summary, inline=False)
+        embed.set_image(url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmYNQiae8EaIvjRu69OjTmpXJa8KrsPGda7w&s")
         
 
         # Ajoute les données des top utilisateurs
@@ -79,7 +77,7 @@ async def on_message(message):
         users_summary = "\n".join([f"{user.name} : {count} mot(s)" for user, count in top_users])
         if not users_summary:
             users_summary = "Aucune activité détectée."
-        embed.add_field(name="Top utilisateurs", value=users_summary, inline=False)
+        embed.add_field(name="Les mecs les plus raciste", value=users_summary, inline=False)
 
         # Mettre à jour le message existant
         channel = bot.get_channel(TRACKER_CHANNEL_ID)
