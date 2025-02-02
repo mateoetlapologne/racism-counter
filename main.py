@@ -60,8 +60,5 @@ async def on_message(message):
             await bot.embed_message.edit(embed=embed)
         else:
             print("Embed not found or incorrect channel id")
-
-
-# Lancement du bot avec le token
-
+#Put the token here 
 bot.run("")
